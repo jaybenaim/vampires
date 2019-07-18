@@ -12,8 +12,9 @@ class Vampire:
     def __init__(self):
         '''Every vampire has a name, age, an in_coffin boolean, and a drank_blood_today boolean. 
         Also creates a new vampire '''
-         
+        random.seed(3)
         self.name = random.choice(self.vampire_names)
+        random.seed(3)
         self.age = random.randint(66, 466)
         # self.in_coffin = False
         # self.drank_blood_today = False 
@@ -24,8 +25,16 @@ class Vampire:
     def drink_blood(self): 
         ''' sets vampire drank_blood_today boolean to true '''
         self.drank_blood_today = True 
-        Vampire.coven.append(Vampire)
-    
+        
+        
+    @classmethod
+    def show_coven(cls): 
+        full_coven = [] 
+        for item in Vampire.coven:
+            full_coven.append(item)
+             # show each item in coven 
+        return len(full_coven)
+        # cls.coven = coven
     # @classmethod
     # def sunset(cls):
     #     for vampire in cls.coven:
@@ -38,6 +47,8 @@ class Vampire:
         for vampire in cls.coven: 
             vampire.drank_blood_today = False 
             vampire.in_coffin = False 
+
+
     # def sunrise(self): 
     #     if self.drank_blood_today: 
     #         Vampire.coven.pop(self.coven.index(Vampire))
@@ -53,17 +64,16 @@ class Vampire:
   
     @classmethod
     def print_coven(cls): 
-        return f'{cls.coven} '
+        return f'{cls.coven}'
 
     @classmethod
-    def create(cls, name, age): 
+    def create(cls): 
         ''' This will create a new Vampire ''' 
+        # cls.name = random.choice(cls.vampire_names)
+        # cls.age = random.randint(66, 466)
         new_vampire = Vampire() 
         cls.coven.append(new_vampire) 
-        
         return new_vampire
-        
-    
 
     @classmethod 
     def go_home(cls): 
@@ -80,12 +90,29 @@ class Vampire:
 
 # go_home 
 # sets a vampires in_coffin boolean to true 
-vampire1 = Vampire()
-vampire2 = Vampire() 
-vampire3 = Vampire() 
+vampire1 = Vampire.create() 
+vampire2 = Vampire.create() 
 
-print(Vampire.coven)
-# vampire1.drink_blood() 
+# print(Vampire.coven) # show vampires in initial coven 
+# print(vampire1) # show vampire 
+
+# Vampire.show_coven()
+vampire1.drink_blood() # make vampire 1 drink blood 
+# print(Vampire.coven) # show new coven 
+
+# for item in Vampire.coven: # show each item in coven 
+#     print(item) 
+
+print(Vampire.show_coven())
+Vampire.sunset() 
+vampire1.drink_blood()
+vampire1.go_home() 
+Vampire.sunrise() 
+
+print(Vampire.show_coven())
+
+# vampire1.go_home() 
+
 # vampire2.drink_blood()
 # # vampire1.new_day() 
 # # vampire1.go_home() 
@@ -101,13 +128,13 @@ print(Vampire.coven)
 
 
 # Vampire.create() 
-Vampire.sunset()
-vampire1.drink_blood() 
-vampire3.go_home() 
-vampire2.drink_blood()
-Vampire.sunrise() 
-print(vampire1)
-print(vampire2)
-print(vampire3)
+# Vampire.sunset()
+# vampire1.drink_blood() 
+# vampire3.go_home() 
+# vampire2.drink_blood()
+# Vampire.sunrise() 
+# print(vampire1)
+# print(vampire2)
+# print(vampire3)
 
 
